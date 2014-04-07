@@ -2582,7 +2582,7 @@ $(function () {
             showText: function(text){
                 var $subtitiles;
                 if(!this.$subtitles_text){
-                    $('body').append('<div id="subtitles_view" style="position: absolute; z-index: 1;"><div id="subtitles_text"></div></div>');
+                    $('body').append('<div id="subtitles_view" style="position: fixed; z-index: 1;"><div id="subtitles_text"></div></div>');
                     $subtitiles = $('#subtitles_view');
                     $subtitiles.css({
                         width: '1280px',
@@ -2591,7 +2591,7 @@ $(function () {
                         top: '0px'
                     });
                     this.$subtitles_text=$('#subtitles_text').css({
-                        'position': 'absolute',
+                        'position': 'fixed',
                         'text-align': 'center',
                         'width': '100%',
                         'left': '0',
@@ -3217,7 +3217,7 @@ SB.readyForPlatform('browser', function () {
         },
         _setSize: function (size) {
           this.$video_container.css({
-              position: "absolute",
+              position: "fixed",
               left: size.left + 'px',
               top: size.top + 'px',
               width: size.width + 'px',
@@ -3486,7 +3486,7 @@ SB.readyForPlatform('lg', function () {
             }
 
 
-            $('body').append('<object mode3D="' + (options.is3d ? 'side_by_side' : 'off') + '" '+drm_string+' type="video/mp4" data="" width="1280" height="720" id="pluginPlayer" style="z-index: 0; position: absolute; left: 0; top: 0;"></object>');
+            $('body').append('<object mode3D="' + (options.is3d ? 'side_by_side' : 'off') + '" '+drm_string+' type="video/mp4" data="" width="1280" height="720" id="pluginPlayer" style="z-index: 0; position: fixed; left: 0; top: 0;"></object>');
             this.plugin = $('#pluginPlayer')[0];
             this.$plugin = $(this.plugin);
 
@@ -3962,7 +3962,7 @@ SB.readyForPlatform('philips', function () {
 
     Player.extend({
         _init: function () {
-            $('body').append('<div id="mediaobject" style="position:absolute;left:0px;top:0px;width:640px;height:480px;">\n\
+            $('body').append('<div id="mediaobject" style="position:fixed;left:0px;top:0px;width:640px;height:480px;">\n\
               <object id="videoPhilips" type="video/mpeg4" width="1280" height="720" />\n\
                </div>');
             video = document.getElementById('videoPhilips');
@@ -4148,7 +4148,7 @@ SB.readyForPlatform('samsung', function () {
             if (this.usePlayerObject) {
                 this.plugin = document.getElementById('pluginPlayer');
                 style = this.plugin.style;
-                style.position = 'absolute';
+                style.position = 'fixed';
                 style.left = '0px';
                 style.top = '0px';
                 wrap = document.createElement('div');
