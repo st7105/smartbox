@@ -2183,6 +2183,11 @@ $(function () {
     var errorTimeout;
 
     var Player = window.Player = {
+        mode3d: {
+            OFF: 'off',
+            SIDE_BY_SIDE: 'side_by_side',
+            ABOVE_BELOW: 'above_below'
+        },
         isSeeking: false,
         // default seek time in seconds
         jumpLength: 5,
@@ -3418,6 +3423,11 @@ SB.readyForPlatform('lg', function () {
     var isReady = false, from;
 
     Player.extend({
+        mode3d: {
+            OFF: 'off',
+            SIDE_BY_SIDE: 'side_by_side',
+            ABOVE_BELOW: 'top_bottom'
+        },
         updateDelay: 500,
         _init: function () {
 
@@ -3426,14 +3436,14 @@ SB.readyForPlatform('lg', function () {
             if (this.plugin.playState == 5) {
                 this.state = 'stop';
                 this.trigger('complete');
-            } else if (this.plugin.playState == 4) {
+            } else if (this.plugin.playState == 6) {
                 this.trigger('error')
             }
         },
         _update: function () {
             var info = this.plugin.mediaPlayInfo();
 
-            if (info && info.width && !isReady) {
+            if (info && info.duration && !isReady) {
                 //$('#log').append('<div>'+info.duration+'</div>');
 
                 //$$log(JSON.stringify(info));
@@ -3485,8 +3495,8 @@ SB.readyForPlatform('lg', function () {
                 drm_string=' drm_type="widevine" ';
             }
 
+            $('body').append('<object mode3D="' + (options.mode3d ? options.mode3d : 'off') + '" '+drm_string+' type="video/mp4" data="" width="1280" height="720" id="pluginPlayer" style="z-index: 0; position: fixed; left: 0; top: 0;"></object>');
 
-            $('body').append('<object mode3D="' + (options.is3d ? 'side_by_side' : 'off') + '" '+drm_string+' type="video/mp4" data="" width="1280" height="720" id="pluginPlayer" style="z-index: 0; position: fixed; left: 0; top: 0;"></object>');
             this.plugin = $('#pluginPlayer')[0];
             this.$plugin = $(this.plugin);
 
